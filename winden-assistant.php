@@ -35,7 +35,7 @@ function add_tailwind_screens_to_footer()
     $configPath = plugin_dir_path(__FILE__) . 'data/tailwind.config.js';
     $configContent = file_get_contents($configPath);
 
-    // Parse the Tailwind config file. 
+    // Parse the Tailwind config file.
     // Note: You might need to write a custom parser or use an existing library, as this file is in JavaScript format.
     $screens = parse_tailwind_config($configContent);
 
@@ -44,12 +44,41 @@ function add_tailwind_screens_to_footer()
         return;
     }
 
-    echo '<div id="tailwind-screens"><ul>';
+    $jsContent = '<script>';
+    $jsContent .= 'var tailwindScreens = [];'; // Define a JavaScript array variable.
+
     foreach ($screens as $name => $size) {
-        echo "<li><button class='tailwind-screen-button' data-breakpoint='{$name}'>{$name}: {$size}</button></li>";
+        // Append the data to the JavaScript variable.
+        $jsContent .= "tailwindScreens.push({ name: '{$name}', size: '{$size}' });";
     }
-    echo '</ul></div>';
+
+    $jsContent .= '</script>';
+
+    // Output the JavaScript variable content.
+    echo $jsContent;
 }
+
+
+// function add_tailwind_screens_to_footer()
+// {
+//     $configPath = plugin_dir_path(__FILE__) . 'data/tailwind.config.js';
+//     $configContent = file_get_contents($configPath);
+
+//     // Parse the Tailwind config file. 
+//     // Note: You might need to write a custom parser or use an existing library, as this file is in JavaScript format.
+//     $screens = parse_tailwind_config($configContent);
+
+//     if (empty($screens)) {
+//         echo 'No screen values found or unable to parse the config file.';
+//         return;
+//     }
+
+//     echo '<div id="tailwind-screens"><ul>';
+//     foreach ($screens as $name => $size) {
+//         echo "<li><button class='tailwind-screen-button' data-breakpoint='{$name}'>{$name}: {$size}</button></li>";
+//     }
+//     echo '</ul></div>';
+// }
 
 
 
