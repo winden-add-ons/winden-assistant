@@ -13,7 +13,7 @@ Get assistance when developing projects with Tailwind CSS 🤖
 
 ## Install
 
-This is converted HTML project to WordPress Plugins. 
+#### This is converted HTML project to WordPress Plugins. 
 
 Download it in your WordPress installation and activate it same as any other plugin. 
 
