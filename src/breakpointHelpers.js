@@ -1,40 +1,33 @@
 export function getBreakpointClasses(twElement) {
-  return {
-    '2xl': [...twElement.classList].filter((className) =>
-      className.startsWith('2xl:')
-    ),
-    xl: [...twElement.classList].filter((className) =>
-      className.startsWith('xl:')
-    ),
-    lg: [...twElement.classList].filter((className) =>
-      className.startsWith('lg:')
-    ),
-    md: [...twElement.classList].filter((className) =>
-      className.startsWith('md:')
-    ),
-    sm: [...twElement.classList].filter((className) =>
-      className.startsWith('sm:')
-    ),
-    dark: [...twElement.classList].filter((className) =>
-      className.startsWith('dark:')
-    ),
-  }
+  const classList = twElement.classList;
+  const result = {};
+
+  tailwindScreens?.length && tailwindScreens.forEach(tailwindScreen => {
+    switch (true) {
+      case classList.contains(tailwindScreen.name):
+        result[tailwindScreen.name] = filterByPrefix(`${tailwindScreen.name}:`, classList);
+        break;
+    }
+  });
+
+  return result;
+}
+
+export function filterByPrefix(prefix, classList) {
+  return [...classList].filter((className) => className.startsWith(prefix));
 }
 
 export function getActiveBreakpoint() {
-  const windowWidth = window.innerWidth
+  const windowWidth = window.innerWidth;
 
-  const tailwindBreakpoints = {
-    640: 'sm',
-    768: 'md',
-    1024: 'lg',
-    1280: 'xl',
-    1536: '2xl',
-  }
+  const activeBreakpoint = tailwindScreens?.length ? tailwindScreens
+    .sort((a, b) => {
+      const sizeA = parseInt(a.size);
+      const sizeB = parseInt(b.size);
 
-  const activeBreakpoint = Object.keys(tailwindBreakpoints)
-    .filter((breakpointWidth) => breakpointWidth < windowWidth)
-    .at(-1)
+      return sizeB - sizeA;
+    })
+    .find((breakpoint) => breakpoint.size.split('px')[0].trim() <= windowWidth) : null;
 
-  return tailwindBreakpoints[activeBreakpoint] || 'Default'
+  return activeBreakpoint ? activeBreakpoint.name : 'Default';
 }
