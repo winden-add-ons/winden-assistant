@@ -130,6 +130,7 @@ export default function () {
           twaPopup.open = true
 
           currentTarget = targetEl
+          addTWActiveClass(currentTarget);
 
           twaBreakpoint.innerText = getActiveBreakpoint()
 
