@@ -21,14 +21,14 @@ export default function () {
       const popupWrapper = document.createElement('div')
 
       popupWrapper.innerHTML = `
-      <details id="twaPopup" class="relative bg-white text-slate-900 shadow-lg rounded-lg group overflow-hidden max-w-sm open:w-screen">
-        <summary class="flex items-center gap-1 justify-center h-10 w-10 group-open:h-12 group-open:w-full group-open:bg-slate-50 cursor-pointer focus:ring focus:ring-inset focus:ring-indigo-500 focus:outline-none">
+      <details id="twaPopup" class="relative bg-white text-slate-900 border border-solid border-slate-600 open:border-slate-300 shadow-md rounded-lg group overflow-hidden max-w-sm open:w-screen">
+        <summary class="flex items-center gap-1 justify-center h-10 w-10 group-open:h-12 group-open:w-full group-open:bg-slate-50 cursor-pointer focus:outline-none group-open:hover:bg-slate-100">
           <span class="select-none">
             🤖
           </span>
 
           <span class="group-open:block hidden text-sm font-medium select-none">
-            - Tailwind CSS Assistant
+            - Winden CSS Assistant
           </span>
         </summary>
 
@@ -39,21 +39,23 @@ export default function () {
 
           <div>
           <form id="twaClassesAdd">
-            ${twaTitleCreator('Edit Classes')}
+            ${twaTitleCreator("Edit Classes")}
 
-            <textarea id="twaClassesEditor" rows="6" spellcheck="false" data-gramm="false" class="mt-1 border-slate-700 bg-slate-800 rounded-md w-full text-sm focus:ring focus:ring-indigo-500 focus:outline-none focus:border-slate-700 resize-none"></textarea>
+            <textarea id="twaClassesEditor" rows="6" spellcheck="false" data-gramm="false" class="mt-1 border-slate-100 bg-slate-50 rounded-md w-full text-sm focus:ring focus:ring-slate-100 focus:outline-none focus:border-slate-300 resize-none"></textarea>
 
-            <button class="bg-indigo-600 text-white rounded-md px-5 py-3 text-sm font-medium mt-2 w-full focus:outline-none focus:ring focus:ring-indigo-500 hover:ring hover:ring-indigo-600">
+            <button class="bg-slate-900  text-white rounded-md px-5 py-3 text-sm font-medium mt-2 w-full focus:outline-none focus:ring focus:ring-indigo-200 hover:ring hover:ring-indigo-200 hover:bg-indigo-600">
               <span class="select-none">Update</span>
             </button>
           </form>
         </div>
 
           <div>
-            ${twaTitleCreator('Toggle Breakpoints')}
+            ${twaTitleCreator("Toggle Breakpoints")}
 
             <fieldset class="flex flex-wrap gap-2 mt-1">
-              ${tailwindScreens.map(ts => twaBreakpointInputsCreator(ts.size, ts.name)).join('')}
+              ${tailwindScreens
+                  .map((ts) => twaBreakpointInputsCreator(ts.size, ts.name))
+                  .join("")}
             </fieldset>
 
             <small class="text-xs font-medium text-slate-500 mt-1.5 block">
@@ -62,31 +64,31 @@ export default function () {
           </div>
 
           <div>
-            ${twaTitleCreator('Change Element')}
+            ${twaTitleCreator("Change Element")}
 
             <div class="flex flex-wrap gap-2 mt-1">
-              ${twaRelativeButtonCreator('parent')}
-              ${twaRelativeButtonCreator('child')}
-              ${twaRelativeButtonCreator('prev')}
-              ${twaRelativeButtonCreator('next')}
+              ${twaRelativeButtonCreator("parent")}
+              ${twaRelativeButtonCreator("child")}
+              ${twaRelativeButtonCreator("prev")}
+              ${twaRelativeButtonCreator("next")}
             </div>
 
             <div id="twaError" class="mt-2 text-amber-500 text-sm font-medium select-none" hidden></div>
           </div>
 
           <div>
-            ${twaTitleCreator('Popup Position')}
+            ${twaTitleCreator("Popup Position")}
 
             <div class="flex flex-wrap gap-2 mt-1">
-              ${twaPositionButtonCreator('tl', ['top-4', 'left-4'])}
-              ${twaPositionButtonCreator('tr', ['top-4', 'right-4'])}
-              ${twaPositionButtonCreator('bl', ['bottom-4', 'left-4'])}
-              ${twaPositionButtonCreator('br', ['bottom-4', 'right-4'])}
+              ${twaPositionButtonCreator("tl", ["top-4", "left-4"])}
+              ${twaPositionButtonCreator("tr", ["top-4", "right-4"])}
+              ${twaPositionButtonCreator("bl", ["bottom-4", "left-4"])}
+              ${twaPositionButtonCreator("br", ["bottom-4", "right-4"])}
             </div>
           </div>
         </div>
       </details>
-    `
+    `;
 
       popupWrapper.classList.add('fixed')
 
