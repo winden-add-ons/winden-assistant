@@ -12,10 +12,17 @@
   "module": "dist/assistant.esm.js",
   "unpkg": "dist/assistant.min.js",
   "scripts": {
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "twcss:watch": "npx tailwindcss -i ./src/input.css -o ./dist/winden-assistant.css --watch",
+    "twcss:build": "npx tailwindcss -i ./src/input.css -o ./dist/winden-assistant.css",
+    "production:css": "postcss ./dist/winden-assistant.css -o ./dist/winden-assistant.min.css"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
     "esbuild": "^0.18.17",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.3.6",
     "tailwindcss-assistant": "^1.0.12"
   }
 }
