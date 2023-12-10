@@ -4,6 +4,7 @@ module.exports = {
             mobile: "600px",
             tablet: "900px",
             desk: "1400px",
-        }
+            xdesk: "1600px",
+        },
     },
 };
