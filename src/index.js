@@ -268,7 +268,6 @@ export default function () {
         eventItem.preventDefault()
 
         currentTarget.className = twaClassesEditor.value
-        twaClassesEditor.blur();
 
         twaBreakpointClasses = getBreakpointClasses(currentTarget)
       }
