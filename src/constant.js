@@ -1,0 +1,1 @@
+export const relativeElementActiveClass = 'tw-element-active';
