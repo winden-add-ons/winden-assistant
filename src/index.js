@@ -9,6 +9,7 @@ import {
   twaRelativeButtonCreator,
   twaTitleCreator,
 } from './creatorHelper.js'
+import { addTWActiveClass } from './helper.js'
 
 export default function () {
   initTailwind()
@@ -160,28 +161,28 @@ export default function () {
           } else if (keyCode === 'ArrowLeft') {
             event.preventDefault();
             const prevBtn = twaRelativeElementButtons.find(treb => treb.getAttribute('data-relative') === 'prev');
-            if(prevBtn) {
+            if (prevBtn) {
               const event = new Event("click");
               prevBtn.dispatchEvent(event);
             }
           } else if (keyCode === 'ArrowUp') {
             event.preventDefault();
             const parentBtn = twaRelativeElementButtons.find(treb => treb.getAttribute('data-relative') === 'parent');
-            if(parentBtn) {
+            if (parentBtn) {
               const event = new Event("click");
               parentBtn.dispatchEvent(event);
             }
           } else if (keyCode === 'ArrowRight') {
             event.preventDefault();
             const nextBtn = twaRelativeElementButtons.find(treb => treb.getAttribute('data-relative') === 'next');
-            if(nextBtn) {
+            if (nextBtn) {
               const event = new Event("click");
               nextBtn.dispatchEvent(event);
             }
           } else if (keyCode === 'ArrowDown') {
             event.preventDefault();
             const childBtn = twaRelativeElementButtons.find(treb => treb.getAttribute('data-relative') === 'child');
-            if(childBtn) {
+            if (childBtn) {
               const event = new Event("click");
               childBtn.dispatchEvent(event);
             }
@@ -213,7 +214,11 @@ export default function () {
               ? currentTarget.parentElement
               : currentTarget
 
-            !currentTarget.parentElement && renderError('No parent element')
+            if (!currentTarget.parentElement) {
+              renderError('No parent element')
+            } else {
+              addTWActiveClass(currentTarget.parentElement);
+            }
           }
 
           if (relativeElementKey === 'prev') {
@@ -221,8 +226,11 @@ export default function () {
               ? currentTarget.previousElementSibling
               : currentTarget
 
-            !currentTarget.previousElementSibling &&
+            if (!currentTarget.previousElementSibling) {
               renderError('No previous sibling element')
+            } else {
+              addTWActiveClass(currentTarget.previousElementSibling);
+            }
           }
 
           if (relativeElementKey === 'next') {
@@ -230,8 +238,11 @@ export default function () {
               ? currentTarget.nextElementSibling
               : currentTarget
 
-            !currentTarget.nextElementSibling &&
+            if (!currentTarget.nextElementSibling) {
               renderError('No next sibling element')
+            } else {
+              addTWActiveClass(currentTarget.nextElementSibling);
+            }
           }
 
           if (relativeElementKey === 'child') {
@@ -239,7 +250,11 @@ export default function () {
               ? currentTarget.firstElementChild
               : currentTarget
 
-            !currentTarget.firstElementChild && renderError('No child element')
+            if (!currentTarget.firstElementChild) {
+              renderError('No child element')
+            } else {
+              addTWActiveClass(currentTarget.firstElementChild);
+            }
           }
 
           currentTarget = relativeElement
