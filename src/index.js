@@ -9,7 +9,7 @@ import {
   twaRelativeButtonCreator,
   twaTitleCreator,
 } from './creatorHelper.js'
-import { addTWActiveClass } from './helper.js'
+import { addTWActiveClass, normalizeTextareaClasses, deNormalizeTextareaClasses } from './helper.js'
 
 export default function () {
   initTailwind()
@@ -136,7 +136,7 @@ export default function () {
 
           twaBreakpointInputs.forEach((twaInput) => (twaInput.checked = true))
 
-          twaClassesEditor.value = currentTarget.className
+          twaClassesEditor.value = normalizeTextareaClasses(currentTarget.className)
 
           twaBreakpointClasses = getBreakpointClasses(currentTarget)
         }
@@ -197,7 +197,7 @@ export default function () {
             twaBreakpointClasses[twaInput.name].forEach((twClass) =>
               currentTarget.classList.toggle(twClass)
             )
-            twaClassesEditor.value = currentTarget.className
+            twaClassesEditor.value = normalizeTextareaClasses(currentTarget.className)
           }
           twaInput.focus();
         })
@@ -262,7 +262,7 @@ export default function () {
 
           twaBreakpointInputs.forEach((twaInput) => (twaInput.checked = true))
 
-          twaClassesEditor.value = currentTarget.className
+          twaClassesEditor.value = normalizeTextareaClasses(currentTarget.className)
 
           twaBreakpointClasses = getBreakpointClasses(currentTarget)
         })
@@ -283,7 +283,7 @@ export default function () {
       function submitClassesForm(eventItem) {
         eventItem.preventDefault()
 
-        currentTarget.className = twaClassesEditor.value
+        currentTarget.className = deNormalizeTextareaClasses(twaClassesEditor.value)
 
         twaBreakpointClasses = getBreakpointClasses(currentTarget)
       }
