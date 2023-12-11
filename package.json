@@ -12,10 +12,11 @@
   "module": "dist/assistant.esm.js",
   "unpkg": "dist/assistant.min.js",
   "scripts": {
-    "start": "nodemon --watch src -e js,css build.js",
-    "build": "node build.js",
-    "twcss:watch": "npx tailwindcss -i ./src/input.css -o ./dist/winden-assistant.css --watch",
-    "twcss:build": "npx tailwindcss -i ./src/input.css -o ./dist/winden-assistant.css",
+    "start": "npm-run-all --parallel watch:esbuild watch:tailwind",
+    "watch:esbuild": "nodemon --watch src -e js,css build.js",
+    "build": "esbuild --entry-points src/main.js --bundle --minify --outdir dist",
+    "watch:tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/winden-assistant.css --watch",
+    "build:tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/winden-assistant.css",
     "production:css": "postcss ./dist/winden-assistant.css -o ./dist/winden-assistant.min.css"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
     "cssnano": "^6.0.1",
     "esbuild": "^0.18.17",
     "nodemon": "^3.0.2",
+    "npm-run-all": "^4.1.5",
     "postcss-cli": "^11.0.0",
     "tailwindcss": "^3.3.6",
     "tailwindcss-assistant": "^1.0.12"
