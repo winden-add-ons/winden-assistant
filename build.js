@@ -1,5 +1,5 @@
 buildPlugin({
-  entryPoints: ['builds/cdn.js'],
+  entryPoints: ['src/main.js'],
   outfile: 'dist/assistant.min.js',
 })
 

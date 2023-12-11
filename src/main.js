@@ -1,4 +1,4 @@
-import assistant from '../src/index.js'
+import assistant from './index.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   assistant()
