@@ -5,7 +5,7 @@ async function build() {
         await esbuild.build({
             entryPoints: ["src/main.js"],
             bundle: true,
-            minify: true,
+            // minify: true,
             outfile: "dist/assistant.min.js",
         });
         console.log("Build successful");
