@@ -35,7 +35,7 @@ export default function () {
             - Winden CSS Assistant
           </span>
         </summary>
-
+        
         <div class="p-4 space-y-4">
           <p class="text-center text-xs select-none">
             Open element CSS information with <span class="font-medium">CMD + Click</span>.

@@ -1,12 +1,17 @@
-buildPlugin({
-  entryPoints: ['src/main.js'],
-  outfile: 'dist/assistant.min.js',
-})
+const esbuild = require("esbuild");
 
-function buildPlugin(buildOptions) {
-  return require('esbuild').buildSync({
-    ...buildOptions,
-    minify: true,
-    bundle: true,
-  })
+async function build() {
+    try {
+        await esbuild.build({
+            entryPoints: ["src/main.js"],
+            bundle: true,
+            minify: true,
+            outfile: "dist/assistant.min.js",
+        });
+        console.log("Build successful");
+    } catch (error) {
+        console.error("Error during build:", error);
+    }
 }
+
+build();
