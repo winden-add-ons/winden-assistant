@@ -1,1 +1,2 @@
-console.log('admin.js');
+console.log('test-admin.js');
+
