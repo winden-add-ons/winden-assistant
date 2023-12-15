@@ -56,3 +56,34 @@ function get_tw_config_from_file()
     // Output the JavaScript variable content.
     echo $jsContent;
 }
+
+
+// Add the admin menu item
+function winden_assistant_add_admin_menu()
+{
+    add_menu_page(
+        'Winden Assistant',     // Page title
+        'Winden Assistant',     // Menu title
+        'manage_options',       // Capability
+        'winden-assistant',     // Menu slug
+        'winden_assistant_page', // Callback function
+        'dashicons-admin-site', // Icon
+        6                       // Position
+    );
+}
+
+add_action('admin_menu', 'winden_assistant_add_admin_menu');
+
+// Callback function for the admin page
+function winden_assistant_page()
+{
+    // Get the site URL
+    $site_url = site_url();
+
+?>
+    <div class="wrap">
+        <h2>Winden Assistant</h2>
+        <iframe src="<?php echo esc_url($site_url); ?>" style="width:100%; height:600px;"></iframe>
+    </div>
+<?php
+}
