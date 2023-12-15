@@ -62,51 +62,14 @@ function winden_assistant_enqueue_script()
     }
 }
 
-// add_action('wp_enqueue_scripts', 'winden_assistant_enqueue_script');
+add_action('wp_enqueue_scripts', 'winden_assistant_enqueue_script');
 
 
 
-// Global variable to store the page hook
-global $winden_assistant_page_hook;
-
-// Add the admin menu item
-function winden_assistant_add_admin_menu()
-{
-    global $winden_assistant_page_hook;
-
-    $winden_assistant_page_hook = add_menu_page(
-        'Winden Assistant',     // Page title
-        'Winden Assistant',     // Menu title
-        'manage_options',       // Capability
-        'winden-assistant',     // Menu slug
-        'winden_assistant_page', // Callback function
-        'dashicons-admin-site', // Icon
-        6                       // Position
-    );
-
-    // Use the registered $page_hook to enqueue your CSS file
-    add_action('admin_enqueue_scripts', function ($hook) use ($winden_assistant_page_hook) {
-        if ($hook == $winden_assistant_page_hook) {
-            // Enqueue Styles
-            wp_enqueue_style('winden-assistant-admin-css', plugins_url('winden-assistant-admin.css', __FILE__));
-            wp_enqueue_style('winden-assistant-css', plugins_url('dist/winden-assistant.css', __FILE__));
-
-            // Enqueue JavaScript file
-            wp_enqueue_script('winden-assistant-js', plugins_url('dist/assistant.min.js', __FILE__), array('jquery'), null, true);
-            wp_enqueue_script('test-js', plugins_url('test.js', __FILE__), array('jquery'), null, true);
-        }
-    });
-
-    // Hook the inline CSS function to the admin head
-    add_action("admin_head-$winden_assistant_page_hook", 'winden_assistant_inline_css');
-
-    // Hook the inline CSS function to the admin head
-    add_action("admin_head-$winden_assistant_page_hook", 'get_tw_config_from_file');
-}
-
-add_action('admin_menu', 'winden_assistant_add_admin_menu');
 
 
+// get tw config from file
+add_action('wp_footer', 'get_tw_config_from_file');
 
 function get_tw_config_from_file()
 {
@@ -136,6 +99,38 @@ function get_tw_config_from_file()
     echo $jsContent;
 }
 
+
+// Global variable to store the page hook
+global $winden_assistant_page_hook;
+
+// Add the admin menu item
+function winden_assistant_add_admin_menu()
+{
+    global $winden_assistant_page_hook;
+
+    $winden_assistant_page_hook = add_menu_page(
+        'Winden Assistant',     // Page title
+        'Winden Assistant',     // Menu title
+        'manage_options',       // Capability
+        'winden-assistant',     // Menu slug
+        'winden_assistant_page', // Callback function
+        'dashicons-admin-site', // Icon
+        6                       // Position
+    );
+
+    // Use the registered $page_hook to enqueue your CSS file
+    add_action('admin_enqueue_scripts', function ($hook) use ($winden_assistant_page_hook) {
+        if ($hook == $winden_assistant_page_hook) {
+            wp_enqueue_style('winden-assistant-css', plugins_url('winden-assistant-admin.css', __FILE__));
+        }
+    });
+
+    // Hook the inline CSS function to the admin head
+    add_action("admin_head-$winden_assistant_page_hook", 'winden_assistant_inline_css');
+}
+
+add_action('admin_menu', 'winden_assistant_add_admin_menu');
+
 // Function to add inline CSS
 function winden_assistant_inline_css()
 {
@@ -156,7 +151,7 @@ function winden_assistant_inline_css()
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1;
+            z-index: 1000000;
         }
 
         .wrap.winden-assistant body {

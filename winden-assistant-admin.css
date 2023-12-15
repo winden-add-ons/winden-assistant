@@ -6,10 +6,10 @@ html, body{
     height: 100%;
 }
 #winden-assistant-iframe{
-    /* width: 100%;
+    width: 100%;
     height: 100% !important;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000000; */
+    z-index: 1000000;
 }

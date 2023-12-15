@@ -145,7 +145,7 @@ export default function () {
 
             popupWrapper.classList.add("fixed");
 
-            let popupPosition = ["right-4", "bottom-4"];
+            let popupPosition = ["right-4", "bottom-4", "z-[1000000]"];
 
             popupPosition.forEach((className) =>
                 popupWrapper.classList.add(className)
