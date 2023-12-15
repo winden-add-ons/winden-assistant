@@ -7,21 +7,63 @@ Author: Your Name
 */
 
 
-// Load all INC Files 
-
-function load_dp_blocks_inc_files()
+function parse_tailwind_config($content)
 {
-    $dirPath = __DIR__ . '/inc/';
-    $files = scandir($dirPath);
-    foreach ($files as $file) {
-        $filePath = $dirPath . $file; // Removed the extra '/' since it's already in $dirPath
-        if (is_file($filePath) && pathinfo($filePath, PATHINFO_EXTENSION) === 'php') {
-            require_once($filePath);
+    $screens = [];
+
+    // Regular expression to match the screens object both directly and inside 'extend'.
+    $pattern = '/screens:\s*\{\s*(.*?)\s*\}(,|})/s';
+
+    // Match all instances of 'screens' object.
+    if (preg_match_all($pattern, $content, $matches, PREG_SET_ORDER)) {
+        foreach ($matches as $match) {
+            // Match individual screen sizes within each 'screens' object.
+            $screenPattern = '/(\w+):\s*"([^\"]+)"/';
+
+            if (preg_match_all($screenPattern, $match[1], $screenMatches)) {
+                foreach ($screenMatches[1] as $index => $name) {
+                    $screens[$name] = $screenMatches[2][$index];
+                }
+            }
+        }
+    }
+
+    return $screens;
+}
+
+function winden_assistant_enqueue_script()
+{
+    // Check if the current user is an administrator
+    if (current_user_can('administrator')) {
+        // Define the base URL for the plugin's scripts and styles
+        $plugin_base_url = plugin_dir_url(__FILE__);
+
+        // Array of script names and their paths relative to the plugin base URL
+        $scripts = array(
+            'winden-assistant-script' => 'dist/assistant.min.js',
+            'test' => 'test.js'
+        );
+
+        // Iterate over each script and enqueue it
+        foreach ($scripts as $handle => $path) {
+            wp_enqueue_script($handle, $plugin_base_url . $path, array(), '1.0', true);
+        }
+
+        // Array of style names and their paths relative to the plugin base URL
+        $styles = array(
+            'winden-assistant-style' => 'dist/winden-assistant.css',
+            // Add more styles here if needed
+        );
+
+        // Iterate over each style and enqueue it
+        foreach ($styles as $handle => $path) {
+            wp_enqueue_style($handle, $plugin_base_url . $path, array(), '1.0', 'all');
         }
     }
 }
 
-add_action('init', 'load_dp_blocks_inc_files');
+add_action('wp_enqueue_scripts', 'winden_assistant_enqueue_script');
+
 
 
 
@@ -58,10 +100,15 @@ function get_tw_config_from_file()
 }
 
 
+// Global variable to store the page hook
+global $winden_assistant_page_hook;
+
 // Add the admin menu item
 function winden_assistant_add_admin_menu()
 {
-    add_menu_page(
+    global $winden_assistant_page_hook;
+
+    $winden_assistant_page_hook = add_menu_page(
         'Winden Assistant',     // Page title
         'Winden Assistant',     // Menu title
         'manage_options',       // Capability
@@ -70,9 +117,49 @@ function winden_assistant_add_admin_menu()
         'dashicons-admin-site', // Icon
         6                       // Position
     );
+
+    // Use the registered $page_hook to enqueue your CSS file
+    add_action('admin_enqueue_scripts', function ($hook) use ($winden_assistant_page_hook) {
+        if ($hook == $winden_assistant_page_hook) {
+            wp_enqueue_style('winden-assistant-css', plugins_url('winden-assistant-admin.css', __FILE__));
+        }
+    });
+
+    // Hook the inline CSS function to the admin head
+    add_action("admin_head-$winden_assistant_page_hook", 'winden_assistant_inline_css');
 }
 
 add_action('admin_menu', 'winden_assistant_add_admin_menu');
+
+// Function to add inline CSS
+function winden_assistant_inline_css()
+{
+?>
+    <style>
+        body{
+            background-color: white;
+        }
+
+        #adminmenumain,
+        #wpadminbar {
+            display: none !important;
+        }
+
+        #winden-assistant-iframe {
+            width: 100%;
+            height: 100% !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000000;
+        }
+
+        .wrap.winden-assistant body {
+            border: 50px solid red;
+        }
+    </style>
+<?php
+}
 
 // Callback function for the admin page
 function winden_assistant_page()
@@ -81,9 +168,8 @@ function winden_assistant_page()
     $site_url = site_url();
 
 ?>
-    <div class="wrap">
-        <h2>Winden Assistant</h2>
-        <iframe src="<?php echo esc_url($site_url); ?>" style="width:100%; height:600px;"></iframe>
+    <div class="wrap winden-assistant">
+        <iframe id="winden-assistant-iframe" src="<?php echo esc_url($site_url); ?>" style="width:100%; height:600px;"></iframe>
     </div>
 <?php
 }
