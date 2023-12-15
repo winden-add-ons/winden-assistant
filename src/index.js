@@ -57,6 +57,13 @@ export default function () {
             ${twaTitleCreator("Toggle Breakpoints")}
 
             <fieldset class="flex flex-wrap gap-2 mt-1">
+                <div>
+                    <input type="checkbox" id="none" name="none" checked="" class="sr-only peer">
+
+                        <label for="none" class="tw-button">
+                        <span class="select-none">none</span>
+                    </label>
+                </div>
               ${tailwindScreens
                   .map((ts) => twaBreakpointInputsCreator(ts.size, ts.name))
                   .join("")}
