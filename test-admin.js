@@ -1,13 +1,23 @@
-console.log('admin 1');
+console.log('admin js loaded');
 
-// window.addEventListener("resize", function () {
+// window.addEventListener("load", function () {
 //     var iframe = document.getElementById("winden-assistant-iframe");
-//     var rect = iframe.getBoundingClientRect();
-//     var fixedElement = iframe.contentWindow.document.getElementById("twaPopup");
-    
-//     // Adjust the position of the element
-//     fixedElement.style.bottom = 10 - rect.bottom + "px";
-//     fixedElement.style.right = 10 - rect.right + "px";
-// });
+//     var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-// console.log('admin 2');
+//     var previousElement = null; // To keep track of the previously clicked element
+
+//     innerDoc.addEventListener("click", function (event) {
+//         var clickedElement = event.target;
+
+//         // If there was a previous element, remove the class from it
+//         if (previousElement) {
+//             previousElement.classList.remove("winden-assistant-element-active");
+//         }
+
+//         // Add the class to the current element
+//         clickedElement.classList.add("winden-assistant-element-active");
+
+//         // Update the previousElement to be the currently clicked element
+//         previousElement = clickedElement;
+//     });
+// });
