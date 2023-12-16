@@ -213,27 +213,12 @@ export default function () {
             });
 
             document.addEventListener("keydown", function (event) {
+              event.preventDefault();
+              const keyCode = event.key;
                 if (twaPopup.open && event.metaKey) {
-                    const keyCode = event.key;
                     if (keyCode === "Enter") {
                         event.preventDefault();
                         submitClassesForm(event);
-                    } else if (keyCode >= "1" && keyCode <= "9") {
-                        if (Array.from(twaBreakpointInputs)?.length) {
-                            event.preventDefault();
-                            const twaInput =
-                                twaBreakpointInputs[parseInt(keyCode) - 1];
-                            if (twaInput) {
-                                const event = new Event("input");
-                                twaInput.dispatchEvent(event);
-                            } else {
-                                [
-                                    ...document.querySelectorAll(
-                                        'input[type="checkbox"]:focus'
-                                    ),
-                                ].forEach((twaInput) => twaInput.blur());
-                            }
-                        }
                     } else if (keyCode === "ArrowLeft") {
                         event.preventDefault();
                         const prevBtn = twaRelativeElementButtons.find(
@@ -275,6 +260,25 @@ export default function () {
                             childBtn.dispatchEvent(event);
                         }
                     }
+                }
+                if(event.metaKey) {
+                  if (keyCode >= "1" && keyCode <= "9") {
+                    if (Array.from(twaBreakpointInputs)?.length) {
+                        event.preventDefault();
+                        const twaInput =
+                            twaBreakpointInputs[parseInt(keyCode) - 1];
+                        if (twaInput) {
+                            const event = new Event("input");
+                            twaInput.dispatchEvent(event);
+                        } else {
+                            [
+                                ...document.querySelectorAll(
+                                    'input[type="checkbox"]:focus'
+                                ),
+                            ].forEach((twaInput) => twaInput.blur());
+                        }
+                    }
+                  }
                 }
             });
 
