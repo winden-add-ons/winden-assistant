@@ -31,3 +31,13 @@ export function getActiveBreakpoint() {
 
   return activeBreakpoint ? activeBreakpoint.name : 'Default';
 }
+
+export function setBreakpointToIframe(event) {
+  const _target = event.target;
+  if(_target?.id) {
+    const newWidth = _target.id === 'none' ? '100%' : _target.id;
+    if(window?.parent) {
+      window.parent.postMessage(newWidth, '*');
+    }
+  }
+}

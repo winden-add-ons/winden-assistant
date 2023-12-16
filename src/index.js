@@ -2,6 +2,7 @@
 import {
     getBreakpointClasses,
     getActiveBreakpoint,
+    setBreakpointToIframe
 } from "./breakpointHelpers.js";
 import {
     twaBreakpointInputsCreator,
@@ -225,6 +226,7 @@ export default function () {
                             if (twaInput) {
                                 const event = new Event("input");
                                 twaInput.dispatchEvent(event);
+                                setBreakpointToIframe(event);
                             } else {
                                 [
                                     ...document.querySelectorAll(
