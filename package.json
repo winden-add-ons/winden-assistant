@@ -14,10 +14,12 @@
   "scripts": {
     "start": "npm-run-all --parallel watch:esbuild watch:tailwind",
     "watch:esbuild": "nodemon --watch src -e js,css build.js",
-    "build": "esbuild --entry-points src/main.js --bundle --minify --outdir dist",
+    "build:js": "node build.js",
     "watch:tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/winden-assistant.css --watch",
     "build:tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/winden-assistant.css",
-    "production:css": "postcss ./dist/winden-assistant.css -o ./dist/winden-assistant.min.css"
+    "production:tailwind": "postcss ./dist/winden-assistant.css -o ./dist/winden-assistant.min.css",
+    "build": "npm-run-all --parallel build:js build:tailwind",
+    "production": "npm-run-all --parallel build:js production:tailwind"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
