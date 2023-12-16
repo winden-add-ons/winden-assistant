@@ -226,7 +226,6 @@ export default function () {
                             if (twaInput) {
                                 const event = new Event("input");
                                 twaInput.dispatchEvent(event);
-                                setBreakpointToIframe(event);
                             } else {
                                 [
                                     ...document.querySelectorAll(
@@ -280,7 +279,7 @@ export default function () {
             });
 
             twaBreakpointInputs.forEach((twaInput) => {
-                twaInput.addEventListener("input", () => {
+                twaInput.addEventListener("input", (event) => {
                     if (
                         (typeof twaBreakpointClasses === "object" &&
                             Object.keys(twaBreakpointClasses)?.length) ||
@@ -294,6 +293,7 @@ export default function () {
                         );
                     }
                     twaInput.focus();
+                    setBreakpointToIframe(event);
                 });
             });
 
