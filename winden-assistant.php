@@ -141,21 +141,30 @@ function winden_assistant_inline_css()
 ?>
   <style>
     body {
-      background-color: white;
+      background-color: #e5e7eb;
     }
 
-    #adminmenumain,
-    #wpadminbar {
+    #adminmenumain, #wpadminbar {
       display: none !important;
+    }
+
+    .winden-assistant {
+      width: 100%;
+      height: 100% !important;
+      padding: 0;
+      margin: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000000;
+      display: flex;
     }
 
     #winden-assistant-iframe {
       width: 100%;
       height: 100% !important;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000000;
+      margin-left: auto !important;
+      margin-right: auto !important;
     }
 
     .wrap.winden-assistant body {
