@@ -1,4 +1,5 @@
 console.log('admin js loaded');
+console.log(tailwindScreens);
 
 // window.addEventListener("load", function () {
 //     var iframe = document.getElementById("winden-assistant-iframe");

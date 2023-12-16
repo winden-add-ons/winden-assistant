@@ -39,6 +39,7 @@ class TailwindConfigLoader
             $jsContent .= "tailwindScreens.push({ name: '{$name}', size: '{$size}' });";
         }
 
+        $jsContent .= 'console.log(tailwindScreens);';
         $jsContent .= '</script>';
         echo $jsContent;
     }
