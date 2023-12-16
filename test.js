@@ -1,5 +1,4 @@
-console.log('front end test');
-// console.log(tailwindScreens);
+console.log(tailwindScreens);
 
 
 
