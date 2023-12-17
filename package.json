@@ -12,7 +12,7 @@
   "module": "dist/assistant.esm.js",
   "unpkg": "dist/assistant.min.js",
   "scripts": {
-    "start": "npm-run-all --parallel watch:esbuild watch:tailwind",
+    "dev": "npm-run-all --parallel js:watch css:watch",
     "js:watch": "nodemon --watch src -e js,css build.js",
     "js:build": "node build.js",
     "css:watch": "npx tailwindcss -i ./src/input.css -o ./dist/winden-assistant.css --watch",
@@ -28,5 +28,8 @@
     "postcss-cli": "^11.0.0",
     "tailwindcss": "^3.3.6",
     "tailwindcss-assistant": "^1.0.12"
+  },
+  "dependencies": {
+    "@knadh/floatype": "^1.1.0"
   }
 }

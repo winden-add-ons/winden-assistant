@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Winden Assistant - Backup
+Plugin Name: Winden Assistant
 Description: Load specific scripts for admin users on the front end.
 Version: 1.0
 Author: Your Name
