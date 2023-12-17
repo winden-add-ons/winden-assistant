@@ -213,7 +213,11 @@ export default function () {
             });
 
             document.addEventListener("keydown", function (event) {
-              event.preventDefault();
+                
+                //  If this is enabled text area is not working
+                //   event.preventDefault(); 
+                //  If this is enabled text area is not working
+
               const keyCode = event.key;
                 if (twaPopup.open && event.metaKey) {
                     if (keyCode === "Enter") {
