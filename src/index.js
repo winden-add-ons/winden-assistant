@@ -161,7 +161,7 @@ export default function () {
       </details>
     `;
 
-            popupWrapper.classList.add("fixed");
+            popupWrapper.classList.add("fixed", "z-50");
 
             let popupPosition = ["right-4", "bottom-4"];
 
@@ -193,42 +193,46 @@ export default function () {
 
             let twaBreakpointClasses;
 
-            document.addEventListener("click", (eventItem) => {
-                const targetEl = eventItem.target;
+            // Ensure that the iframe is fully loaded before attaching the event listener
+            window.addEventListener("load", function () {
+                const iframe = document.querySelector(
+                    "#winden-assistant-iframe"
+                );
+                if (iframe && iframe.contentWindow) {
+                    // Access the document inside the iframe
+                    const iframeDocument = iframe.contentWindow.document;
 
-                if (!twaPopup.contains(targetEl)) {
-                    twaPopup.open = false;
-                }
+                    // Attach the event listener to the iframe's document
+                    iframeDocument.addEventListener("click", (eventItem) => {
+                        const targetEl = eventItem.target;
 
-                if (eventItem.metaKey) {
-                    eventItem.preventDefault();
+                        if (eventItem.metaKey) {
+                            eventItem.preventDefault();
 
-                    twaPopup.open = true;
+                            twaPopup.open = true;
 
-                    currentTarget = targetEl;
-                    addTWActiveClass(currentTarget);
+                            currentTarget = targetEl;
+                            addTWActiveClass(currentTarget);
 
-                    twaBreakpoint.innerText = getActiveBreakpoint();
+                            twaBreakpoint.innerText = getActiveBreakpoint();
 
-                    twaBreakpointInputs.forEach(
-                        (twaInput) => (twaInput.checked = true)
-                    );
+                            twaBreakpointInputs.forEach(
+                                (twaInput) => (twaInput.checked = true)
+                            );
 
-                    twaClassesEditor.value = normalizeTextareaClasses(
-                        currentTarget.className
-                    );
+                            twaClassesEditor.value = normalizeTextareaClasses(
+                                currentTarget.className
+                            );
 
-                    twaBreakpointClasses = getBreakpointClasses(currentTarget);
+                            twaBreakpointClasses =
+                                getBreakpointClasses(currentTarget);
+                        }
+                    });
                 }
             });
 
             document.addEventListener("keydown", function (event) {
-                
-                //  If this is enabled text area is not working
-                //   event.preventDefault(); 
-                //  If this is enabled text area is not working
-
-              const keyCode = event.key;
+                const keyCode = event.key;
                 if (twaPopup.open && event.metaKey) {
                     if (keyCode === "Enter") {
                         event.preventDefault();
@@ -275,24 +279,24 @@ export default function () {
                         }
                     }
                 }
-                if(event.metaKey) {
-                  if (keyCode >= "1" && keyCode <= "9") {
-                    if (Array.from(twaBreakpointInputs)?.length) {
-                        event.preventDefault();
-                        const twaInput =
-                            twaBreakpointInputs[parseInt(keyCode) - 1];
-                        if (twaInput) {
-                            const event = new Event("input");
-                            twaInput.dispatchEvent(event);
-                        } else {
-                            [
-                                ...document.querySelectorAll(
-                                    'input[type="checkbox"]:focus'
-                                ),
-                            ].forEach((twaInput) => twaInput.blur());
+                if (event.metaKey) {
+                    if (keyCode >= "1" && keyCode <= "9") {
+                        if (Array.from(twaBreakpointInputs)?.length) {
+                            event.preventDefault();
+                            const twaInput =
+                                twaBreakpointInputs[parseInt(keyCode) - 1];
+                            if (twaInput) {
+                                const event = new Event("input");
+                                twaInput.dispatchEvent(event);
+                            } else {
+                                [
+                                    ...document.querySelectorAll(
+                                        'input[type="checkbox"]:focus'
+                                    ),
+                                ].forEach((twaInput) => twaInput.blur());
+                            }
                         }
                     }
-                  }
                 }
             });
 

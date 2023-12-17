@@ -8,8 +8,8 @@ class ScriptLoader
             $plugin_base_url = plugin_dir_url(dirname(__FILE__) . '/../../');
 
             $scripts = array(
-                'winden-assistant-script' => 'dist/assistant.min.js',
-                'test' => 'test.js'
+                // 'winden-assistant-script' => 'dist/assistant.min.js',
+                // 'test' => 'test.js'
             );
 
             foreach ($scripts as $handle => $path) {
@@ -17,7 +17,7 @@ class ScriptLoader
             }
 
             $styles = array(
-                'winden-assistant-style' => 'dist/winden-assistant.css',
+                // 'winden-assistant-style' => 'dist/winden-assistant.css',
             );
 
             foreach ($styles as $handle => $path) {
