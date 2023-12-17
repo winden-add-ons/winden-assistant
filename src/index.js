@@ -19,10 +19,6 @@ import {
   twaIframeId
 } from "./constant.js";
 
-import { 
-    floatype 
-} from "@knadh/floatype";
-
 export default function () {
     // initTailwind()
     
@@ -75,7 +71,7 @@ export default function () {
             ${twaTitleCreator("Toggle Breakpoints")}
 
             <fieldset class="flex flex-wrap gap-2 mt-1">
-                <button data-type='breakpoint' id="none" name="none" class="tw-button select-none border-0">
+                <button data-type='breakpoint' id="none" name="none" class="tw-button select-none">
                 none
                 </button>
               ${tailwindScreens
@@ -115,7 +111,7 @@ export default function () {
             <div class="flex flex-wrap gap-2 mt-1">
               
             <div>
-              <button data-position="top-4,left-4" class="bg-slate-100 p-1 rounded-md border-0">
+              <button data-position="top-4,left-4" class="bg-slate-100 p-1 rounded-md">
                 <span class="select-none">
                   <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="-0.75" y="0.75" width="28.5" height="20.5" transform="matrix(-1 0 0 1 29.5 1)" stroke="#CBD5E1" stroke-width="1.5"/>
@@ -126,7 +122,7 @@ export default function () {
             </div>
             
             <div>
-              <button data-position="bottom-4,left-4" class="bg-slate-100 p-1 rounded-md border-0">
+              <button data-position="bottom-4,left-4" class="bg-slate-100 p-1 rounded-md">
                 <span class="select-none">
                   <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="30.25" y="22.25" width="28.5" height="20.5" transform="rotate(180 30.25 22.25)" stroke="#CBD5E1" stroke-width="1.5"/>
@@ -137,7 +133,7 @@ export default function () {
             </div>
                       
             <div>
-              <button data-position="top-4,right-4" class="bg-slate-100 p-1 rounded-md border-0">
+              <button data-position="top-4,right-4" class="bg-slate-100 p-1 rounded-md">
                 <span class="select-none">
                   <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="1.75" y="1.75" width="28.5" height="20.5" stroke="#CBD5E1" stroke-width="1.5"/>
@@ -148,7 +144,7 @@ export default function () {
             </div>
                  
             <div>
-              <button data-position="bottom-4,right-4" class="bg-slate-100 p-1 rounded-md border-0">
+              <button data-position="bottom-4,right-4" class="bg-slate-100 p-1 rounded-md">
                 <span class="select-none">
                 <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="0.75" y="-0.75" width="28.5" height="20.5" transform="matrix(1 0 0 -1 1 21.5)" stroke="#CBD5E1" stroke-width="1.5"/>
@@ -435,11 +431,3 @@ export default function () {
         }
     }, 100);
 }
-
-
-floatype(document.querySelector("textarea"), {
-    onQuery: async (val) => {
-        // fetch() or whatever that fetches/generates results.
-        return ["results", "here"];
-    },
-});
