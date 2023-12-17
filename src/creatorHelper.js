@@ -12,19 +12,15 @@ export const twaBreakpointInputsCreator = (elId, elName) => `
     `;
 
 export const twaPositionButtonCreator = (elName, elClasses) => `
-    <div>
-      <button data-position='${elClasses}' class="tw-button">
+      <button data-position='${elClasses}' class="tw-button select-none">
         <span class="select-none">${elName}</span>
       </button>
-    </div>
-  `
+  `;
 
 export const twaRelativeButtonCreator = (elName) => `
-  <div>
     <button data-relative='${elName}' class="tw-button">
       <span class="select-none">${elName}</span>
     </button>
-  </div>
 `;
 
 export const twaTitleCreator = (elTitle) => `
