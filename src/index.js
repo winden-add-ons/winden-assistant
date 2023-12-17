@@ -442,22 +442,3 @@ export default function () {
         }
     }, 100);
 }
-
-
-
-// Assuming you have a reference to the iframe element
-const iframe = document.getElementById("winden-assistant-iframe");
-const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-// Function to remove the active class
-const removeTWActiveClass = () => {
-  [...iframeDocument.querySelectorAll(`.${relativeElementActiveClass}`)].forEach(twea => twea.classList.remove(relativeElementActiveClass));
-}
-
-// Attach event listeners within the iframe document
-iframeDocument.addEventListener('click', function(event) {
-  // Your logic here, e.g., add or remove classes
-  removeTWActiveClass();
-  // Add class to clicked element, if necessary
-  event.target.classList.add(relativeElementActiveClass);
-});
