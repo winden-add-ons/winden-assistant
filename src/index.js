@@ -18,6 +18,16 @@ import {
 
 export default function () {
     // initTailwind()
+    
+    const twaPopupInterval = setInterval(() => {
+      const twaPopup = document.getElementById('twaPopup');
+      if(twaPopup) {
+        clearInterval(twaPopupInterval);
+        if (twaPopup.tabIndex !== -1) {
+          twaPopup.focus();
+        }
+      }
+    }, 100);
 
     const tailwindScreensTimer = setInterval(() => {
         if (tailwindScreens?.length) {
@@ -26,7 +36,7 @@ export default function () {
             const popupWrapper = document.createElement("div");
 
             popupWrapper.innerHTML = `
-      <details id="twaPopup" class="relative bg-indigo-800 open:bg-white text-slate-900 border border-solid border-slate-600 open:border-slate-300 shadow-md rounded-lg group overflow-hidden max-w-sm open:w-screen fixed bottom-2 right-2">
+      <details id="twaPopup" tabindex="0" class="relative bg-indigo-800 open:bg-white text-slate-900 border border-solid border-slate-600 open:border-slate-300 shadow-md rounded-lg group overflow-hidden max-w-sm open:w-screen fixed bottom-2 right-2">
         <summary class="flex items-center gap-1 justify-center h-10 w-10 group-open:h-12 group-open:w-full group-open:bg-slate-50 cursor-pointer focus:outline-none group-open:hover:bg-slate-100">
           <span class="select-none">
             🤖
