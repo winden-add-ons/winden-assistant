@@ -31,10 +31,11 @@ class AdminMenu
     {
         echo '<style>
             body { background-color: #e5e7eb; }
-            #adminmenumain, #wpadminbar { display: none !important; }
-            .winden-assistant { width: 100%; height: 100% !important; padding: 0; margin: 0; position: fixed; top: 0; left: 0; z-index: 10; display: flex; }
+            #adminmenumain, #wpadminbar, #wpfooter { display: none !important; }
             #winden-assistant-iframe { width: 100%; height: 100% !important; margin-left: auto !important; margin-right: auto !important; }
+            .winden-assistant { width: 100%; height: 100% !important; padding: 0; margin: 0; position: fixed; top: 0; left: 0; z-index: 10; display: flex; }
             .wrap.winden-assistant body { border: 50px solid red; }
+
         </style>';
     }
 
