@@ -15,6 +15,9 @@ import {
     normalizeTextareaClasses,
     deNormalizeTextareaClasses,
 } from "./helper.js";
+import {
+  twaIframeId
+} from "./constant.js";
 
 export default function () {
     // initTailwind()
@@ -68,13 +71,9 @@ export default function () {
             ${twaTitleCreator("Toggle Breakpoints")}
 
             <fieldset class="flex flex-wrap gap-2 mt-1">
-                <div>
-                    <input type="checkbox" id="none" name="none" checked="" class="sr-only peer">
-
-                        <label for="none" class="tw-button">
-                        <span class="select-none">none</span>
-                    </label>
-                </div>
+                <button data-type='breakpoint' id="none" name="none" class="tw-button select-none">
+                none
+                </button>
               ${tailwindScreens
                   .map((ts) => twaBreakpointInputsCreator(ts.size, ts.name))
                   .join("")}
@@ -173,7 +172,7 @@ export default function () {
 
             const twaBreakpoint = document.getElementById("twaBreakpoint");
             const twaBreakpointInputs = [
-                ...document.querySelectorAll('input[type="checkbox"]'),
+                ...document.querySelectorAll('[data-type="breakpoint"]'),
             ];
 
             const twaClassesAdd = document.getElementById("twaClassesAdd");
@@ -195,9 +194,7 @@ export default function () {
 
             // Ensure that the iframe is fully loaded before attaching the event listener
             window.addEventListener("load", function () {
-                const iframe = document.querySelector(
-                    "#winden-assistant-iframe"
-                );
+                const iframe = document.querySelector(`#${twaIframeId}`);
                 if (iframe && iframe.contentWindow) {
                     // Access the document inside the iframe
                     const iframeDocument = iframe.contentWindow.document;
@@ -215,10 +212,6 @@ export default function () {
                             addTWActiveClass(currentTarget);
 
                             twaBreakpoint.innerText = getActiveBreakpoint();
-
-                            twaBreakpointInputs.forEach(
-                                (twaInput) => (twaInput.checked = true)
-                            );
 
                             twaClassesEditor.value = normalizeTextareaClasses(
                                 currentTarget.className
@@ -286,12 +279,12 @@ export default function () {
                             const twaInput =
                                 twaBreakpointInputs[parseInt(keyCode) - 1];
                             if (twaInput) {
-                                const event = new Event("input");
+                                const event = new Event("click");
                                 twaInput.dispatchEvent(event);
                             } else {
                                 [
                                     ...document.querySelectorAll(
-                                        'input[type="checkbox"]:focus'
+                                        '[data-type="breakpoint"]:focus'
                                     ),
                                 ].forEach((twaInput) => twaInput.blur());
                             }
@@ -301,7 +294,7 @@ export default function () {
             });
 
             twaBreakpointInputs.forEach((twaInput) => {
-                twaInput.addEventListener("input", (event) => {
+                twaInput.addEventListener("click", (event) => {
                     if (
                         (typeof twaBreakpointClasses === "object" &&
                             Object.keys(twaBreakpointClasses)?.length) ||
@@ -377,10 +370,6 @@ export default function () {
                     }
 
                     currentTarget = relativeElement;
-
-                    twaBreakpointInputs.forEach(
-                        (twaInput) => (twaInput.checked = true)
-                    );
 
                     twaClassesEditor.value = normalizeTextareaClasses(
                         currentTarget.className

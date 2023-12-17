@@ -1,14 +1,7 @@
 export const twaBreakpointInputsCreator = (elId, elName) => `
-      <div>
-        <input type="checkbox" id="${elId}" name="${elName}" checked class="sr-only peer" />
-
-        <label
-          for="${elId}"
-          class="tw-button"
-        >
-          <span class="select-none">${elName}</span>
-        </label>
-      </div>
+      <button data-type='breakpoint' id="${elId}" name="${elName}" class="tw-button select-none">
+      ${elName}
+      </button>
     `;
 
 export const twaPositionButtonCreator = (elName, elClasses) => `
