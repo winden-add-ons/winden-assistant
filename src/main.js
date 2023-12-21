@@ -4,5 +4,8 @@ import { initializeFuzzyArea } from "fuzzy-area";
 
 document.addEventListener('DOMContentLoaded', () => {
   assistant()
-  initializeFuzzyArea({ containerId: 'twaClassesAdd', waitForElement: true });
+  initializeFuzzyArea({ 
+    containerId: 'twaClassesAdd', 
+    waitForElement: true 
+  });
 })
