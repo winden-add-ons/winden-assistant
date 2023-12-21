@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "esbuild-sass-plugin": "^2.16.1",
-    "fuzzy-area": "^1.0.4",
+    "fuzzy-area": "^1.0.9",
     "npm": "^10.2.5"
   }
 }
