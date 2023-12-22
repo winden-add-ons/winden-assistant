@@ -1,1 +1,3 @@
-var suggestions = JSON.parse(assistant_suggestions.winden_classes);
+console.log("admin 1");
+
+var suggestions = ["marko", "osama", "test"];
