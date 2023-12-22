@@ -18,7 +18,8 @@ class AdminMenu
 
         add_action('admin_enqueue_scripts', function ($hook) {
             if ($hook == $this->pageHook) {
-                wp_enqueue_style('winden-assistant-css', plugins_url('../dist/winden-assistant.css', __FILE__));
+                wp_enqueue_style('winden-assistant-admin-css', plugins_url('../dist/winden-assistant.css', __FILE__));
+                wp_enqueue_style('winden-assistant-css', plugins_url('../dist/assistant.min.css', __FILE__));
                 wp_enqueue_script('winden-assistant-script', plugins_url('../dist/assistant.min.js', __FILE__), array('jquery'), null, true);
             }
         });

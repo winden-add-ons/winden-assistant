@@ -3,7 +3,7 @@
 import {
     getBreakpointClasses,
     getActiveBreakpoint,
-    setBreakpointToIframe
+    setBreakpointToIframe,
 } from "./breakpointHelpers.js";
 import {
     twaBreakpointInputsCreator,
@@ -16,21 +16,19 @@ import {
     normalizeTextareaClasses,
     deNormalizeTextareaClasses,
 } from "./helper.js";
-import {
-  twaIframeId
-} from "./constant.js";
+import { twaIframeId } from "./constant.js";
 
 export default function () {
     // initTailwind()
-    
+
     const twaPopupInterval = setInterval(() => {
-      const twaPopup = document.getElementById('twaPopup');
-      if(twaPopup) {
-        clearInterval(twaPopupInterval);
-        if (twaPopup.tabIndex !== -1) {
-          twaPopup.focus();
+        const twaPopup = document.getElementById("twaPopup");
+        if (twaPopup) {
+            clearInterval(twaPopupInterval);
+            if (twaPopup.tabIndex !== -1) {
+                twaPopup.focus();
+            }
         }
-      }
     }, 100);
 
     const tailwindScreensTimer = setInterval(() => {
@@ -52,19 +50,23 @@ export default function () {
         </summary>
         
         <div class="p-4 space-y-4">
-          <p class="text-center text-xs select-none">
-            Open element CSS information with <span class="font-medium">CMD + Click</span>.
-          </p>
-
           <div>
           <form id="twaClassesAdd">
             ${twaTitleCreator("Edit Classes")}
 
             <textarea id="twaClassesEditor" rows="6" spellcheck="false" data-gramm="false" class="p-1 mt-1 border-slate-100 bg-slate-50 rounded-md w-full text-sm focus:ring focus:ring-slate-100 focus:outline-none focus:border-slate-300 resize-none"></textarea>
 
-            <button class="bg-slate-900  text-white rounded-md px-5 py-3 text-sm font-medium mt-2 w-full focus:outline-none focus:ring focus:ring-indigo-200 hover:ring hover:ring-indigo-200 hover:bg-indigo-600">
-              <span class="select-none">Update</span>
-            </button>
+            <div class="flex">
+                <button class="bg-slate-900  text-white rounded-md px-5 py-3 text-sm font-medium mt-2 w-full focus:outline-none focus:ring focus:ring-indigo-200 hover:ring hover:ring-indigo-200 hover:bg-indigo-600">
+                <span class="select-none">Update</span>
+                </button>
+                
+                <button 
+                    id="assistantCopy"
+                    class="bg-slate-900  text-white rounded-md px-5 py-3 text-sm font-medium mt-2 w-full focus:outline-none focus:ring focus:ring-indigo-200 hover:ring hover:ring-indigo-200 hover:bg-indigo-600"
+                    >Copy
+                </button>
+            </div>
           </form>
         </div>
 
@@ -101,14 +103,6 @@ export default function () {
           <div>
             ${twaTitleCreator("Popup Position")}
 
-            <!--
-            <div class="flex flex-wrap gap-2 mt-1">
-              ${twaPositionButtonCreator("tl", ["top-4", "left-4"])}
-              ${twaPositionButtonCreator("tr", ["top-4", "right-4"])}
-              ${twaPositionButtonCreator("bl", ["bottom-4", "left-4"])}
-              ${twaPositionButtonCreator("br", ["bottom-4", "right-4"])}
-            </div>
-            -->
             <div class="flex flex-wrap gap-2 mt-1">
               
             <div>
@@ -156,6 +150,11 @@ export default function () {
             </div>
   
             </div>
+
+            <p class="text-center text-xs select-none">
+                Open element CSS information with <span class="font-medium">CMD + Click</span>.
+            </p>
+
           </div>
         </div>
       </details>
