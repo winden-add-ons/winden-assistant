@@ -1,10 +1,14 @@
 <?php
-/*
-Plugin Name: Winden Assistant - Backup
-Description: Load specific scripts for admin users on the front end.
-Version: 1.0
-Author: Your Name
-*/
+
+/**
+ * Plugin Name: Winden Assistant
+ * Plugin URI:  https://dplugins.com/
+ * Description: Plugin crafted for dPlugins instalations and debuging
+ * Author: DPlugins
+ * Author URI: https://dplugins.com/
+ * Version: 0.1.0
+ */
+
 
 require_once 'inc/ScriptLoader.php';
 require_once 'inc/AdminMenu.php';
