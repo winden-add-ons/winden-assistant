@@ -26,7 +26,7 @@ class WindenAssistant
     $this->adminMenu = new AdminMenu();
     $this->tailwindConfigLoader = new TailwindConfigLoader();
 
-    add_action('wp_enqueue_scripts', array($this->scriptLoader, 'enqueueScript'));
+    //add_action('wp_enqueue_scripts', array($this->scriptLoader, 'enqueueScript'));
     add_action('wp_footer', array($this->tailwindConfigLoader, 'getTwConfigFromFile'));
     add_action('admin_footer', array($this->tailwindConfigLoader, 'getTwConfigFromFile'));
     add_action('admin_menu', array($this->adminMenu, 'addAdminMenu'));
