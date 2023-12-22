@@ -12,8 +12,8 @@ class AdminMenu
             'manage_options',
             'winden-assistant',
             array($this, 'adminPage'),
-            'dashicons-admin-site',
-            6
+            'dashicons-universal-access-alt',
+            1000000
         );
 
         add_action('admin_enqueue_scripts', function ($hook) {
