@@ -80,18 +80,20 @@ class TailwindConfigLoader
 
         $winden_classes = array();
         $upload_dir = wp_upload_dir();
-        $last_modified_file = $this->find_last_modified_file($upload_dir['basedir'] . '/winden/tasks');
-        if($last_modified_file != null){
-            if (file_exists($last_modified_file)) {
-                $winden_classes = json_decode(file_get_contents($last_modified_file, false, stream_context_create($arrContextOptions)));
-                if ($winden_classes == null || empty($winden_classes)) {
+        if (file_exists($upload_dir['basedir'] . '/winden/tasks')) {
+            $last_modified_file = $this->find_last_modified_file($upload_dir['basedir'] . '/winden/tasks');
+            if($last_modified_file != null){
+                if (file_exists($last_modified_file)) {
+                    $winden_classes = json_decode(file_get_contents($last_modified_file, false, stream_context_create($arrContextOptions)));
+                    if ($winden_classes == null || empty($winden_classes)) {
+                        $winden_classes = array();
+                    }
+                } else {
                     $winden_classes = array();
                 }
-            } else {
-                $winden_classes = array();
+                $winden_classes = json_encode($winden_classes);
+                echo '<script>var suggestions = '.$winden_classes.';</script>';
             }
-            $winden_classes = json_encode($winden_classes);
-            echo '<script>var suggestions = '.$winden_classes.';</script>';
         }
     }
 }
