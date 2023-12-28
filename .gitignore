@@ -24,3 +24,5 @@ yarn-error.log*
 index.html
 
 /dist
+
+.package-lock.json
