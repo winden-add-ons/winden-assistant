@@ -61,11 +61,11 @@ export default function () {
                 <span class="select-none">Update</span>
                 </button>
                 
-                <button 
+                <!-- <button 
                     id="assistantCopy"
                     class="bg-slate-900  text-white rounded-md px-5 py-3 text-sm font-medium mt-2 w-full focus:outline-none focus:ring focus:ring-indigo-200 hover:ring hover:ring-indigo-200 hover:bg-indigo-600"
                     >Copy
-                </button>
+                </button> -->
             </div>
           </form>
         </div>

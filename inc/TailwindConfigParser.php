@@ -2,7 +2,7 @@
 
 class TailwindConfigParser
 {
-    public static function parse($content)
+    public static function parse($files)
     {
         // Default breakpoints
         $defaultScreens = [
@@ -13,36 +13,40 @@ class TailwindConfigParser
             '2xl' => '1536px',
         ];
 
-        // Parsing pattern for direct screens
-        $directPattern = '/theme:\s*\{\s*screens:\s*\{\s*(.*?)\s*\}\s*(,|})/s';
-        $directScreens = self::parseScreens($content, $directPattern);
+        // Find the tailwind.config.js file
+        $tailwindConfigContent = self::findTailwindConfig($files);
 
-        // If direct screens are found, use them instead of default screens
-        if (!empty($directScreens)) {
-            return $directScreens;
+        // If tailwind.config.js is found, parse its screens
+        if ($tailwindConfigContent !== null) {
+            $customScreens = self::parseTailwindConfig($tailwindConfigContent);
+            return array_merge($defaultScreens, $customScreens);
         }
 
-        // Parsing pattern for extended screens
-        $extendPattern = '/extend:\s*\{\s*screens:\s*\{\s*(.*?)\s*\}\s*(,|})/s';
-        $extendedScreens = self::parseScreens($content, $extendPattern);
-
-        // Combine default screens with extended screens, if extended screens are provided
-        return array_merge($defaultScreens, $extendedScreens);
+        // Return default screens if tailwind.config.js is not found
+        return $defaultScreens;
     }
 
-    private static function parseScreens($content, $pattern)
+    private static function findTailwindConfig($files)
     {
-        $screens = [];
-        if (preg_match_all($pattern, $content, $matches, PREG_SET_ORDER)) {
-            foreach ($matches as $match) {
-                $screenPattern = '/(\w+):\s*"([^\"]+)"/';
-                if (preg_match_all($screenPattern, $match[1], $screenMatches)) {
-                    foreach ($screenMatches[1] as $index => $name) {
-                        $screens[$name] = $screenMatches[2][$index];
-                    }
-                }
+        foreach ($files as $file) {
+            if ($file['name'] === 'tailwind.config.js') {
+                return $file['content'];
             }
         }
-        return $screens;
+        return null;
+    }
+
+    private static function parseTailwindConfig($content)
+    {
+        // Convert JS object to JSON
+        $jsonContent = str_replace(['export default {', '}'], ['{', '}'], $content);
+        $configArray = json_decode($jsonContent, true);
+
+        if ($configArray === null) {
+            // Handle JSON parsing error
+            return []; // or throw an exception
+        }
+
+        return $configArray['theme']['screens'] ?? [];
     }
 }

@@ -34,7 +34,7 @@ class TailwindConfigLoader
     
     public function getTwConfigFromFile()
     {
-        $configPath = plugin_dir_path(__FILE__) . '../data/tailwind.config.js';
+        // $configPath = plugin_dir_path(__FILE__) . '../data/tailwind.config.js';
 
         // Check if the file exists
         if (file_exists($configPath)) {
