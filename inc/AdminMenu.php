@@ -21,6 +21,7 @@ class AdminMenu
                 wp_enqueue_style('winden-assistant-admin-css', plugins_url('../dist/winden-assistant.css', __FILE__));
                 wp_enqueue_style('winden-assistant-css', plugins_url('../dist/assistant.min.css', __FILE__));
                 wp_enqueue_script('winden-assistant-script', plugins_url('../dist/assistant.min.js', __FILE__), array('jquery'), null, true);
+                wp_enqueue_script('winden-assistant-script', plugins_url('../test.js', __FILE__), array('jquery'), null, true);
             }
         });
 
