@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         (screen) => screen.name + ":"
     );
 
-    var prefixes = additionalPrefixes.concat(prefixesFromScreens);
+    var prefixes = prefixesFromScreens.concat(additionalPrefixes);
     window.prefixes = prefixes;
     console.log(prefixes);
 });
