@@ -6,23 +6,19 @@
  * Description: Plugin crafted for dPlugins instalations and debuging
  * Author: DPlugins
  * Author URI: https://dplugins.com/
- * Version: 0.1.0
+ * Version: 0.1.1
  */
 
-
-require_once 'inc/ScriptLoader.php';
 require_once 'inc/AdminMenu.php';
 require_once 'inc/TailwindConfigLoader.php'; // Ensure this file is included
 
 class WindenAssistant
 {
-  private $scriptLoader;
   private $adminMenu;
   private $tailwindConfigLoader;
 
   public function __construct()
   {
-    $this->scriptLoader = new ScriptLoader();
     $this->adminMenu = new AdminMenu();
     $this->tailwindConfigLoader = new TailwindConfigLoader();
 

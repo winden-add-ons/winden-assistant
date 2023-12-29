@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeFuzzyArea({
         containerId: "twaClassesAdd",
         waitForElement: true,
+        maxSuggestions: 40,
+        prefixMention: ["@", "#", ":"],
     });    
 })
 
