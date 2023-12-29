@@ -1,6 +1,5 @@
 <?php
 
-
 class TailwindScreensInjector
 {
 
@@ -22,22 +21,35 @@ class TailwindScreensInjector
         $winden_editor_option = get_option('winden_editor');
         $screens = [];
 
+        // Default breakpoints
+        $defaultScreens = [
+            ['name' => 'sm', 'size' => '640px'],
+            ['name' => 'md', 'size' => '768px'],
+            ['name' => 'lg', 'size' => '1024px'],
+            ['name' => 'xl', 'size' => '1280px'],
+            ['name' => '2xl', 'size' => '1536px'],
+        ];
+
         if (false !== $winden_editor_option) {
             foreach ($winden_editor_option as $item) {
                 if ($item['name'] === 'tailwind.config.js') {
                     preg_match_all("/'(\w+)':\s*'(\d+px)'/", $item['content'], $matches, PREG_SET_ORDER);
 
-                    foreach ($matches as $match) {
-                        $screens[] = [
-                            'name' => $match[1],
-                            'size' => $match[2]
-                        ];
+                    if (!empty($matches)) {
+                        foreach ($matches as $match) {
+                            $screens[] = [
+                                'name' => $match[1],
+                                'size' => $match[2]
+                            ];
+                        }
+                        return $screens;
                     }
                 }
             }
         }
 
-        return $screens;
+        // Return default screens if no screens are found in the winden_editor option
+        return $defaultScreens;
     }
 
     private function injectScripts()
@@ -54,5 +66,3 @@ class TailwindScreensInjector
         add_action('admin_head', $printScript);
     }
 }
-
-

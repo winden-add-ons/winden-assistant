@@ -21,7 +21,6 @@ class AdminMenu
                 wp_enqueue_style('winden-assistant-admin-css', plugins_url('../dist/winden-assistant.css', __FILE__));
                 wp_enqueue_style('winden-assistant-css', plugins_url('../dist/assistant.min.css', __FILE__));
                 wp_enqueue_script('winden-assistant-script', plugins_url('../dist/assistant.min.js', __FILE__), array('jquery'), null, true);
-                wp_enqueue_script('test', plugins_url('../test.js', __FILE__), array('jquery'), null, true);
             }
         });
 
@@ -31,13 +30,12 @@ class AdminMenu
     public function inlineCss()
     {
         echo '<style>
-            body { background-color: #e5e7eb; }
+            html, body{ height: 100%;}
             body { background-color: rgb(30, 30, 30); }
             #adminmenumain, #wpadminbar, #wpfooter { display: none !important; }
             #winden-assistant-iframe { width: 100%; height: 100% !important; margin-left: auto !important; margin-right: auto !important; }
             .winden-assistant { width: 100%; height: 100% !important; padding: 0; margin: 0; position: fixed; top: 0; left: 0; z-index: 10; display: flex; }
             .wrap.winden-assistant body { border: 50px solid red; }
-
         </style>';
     }
 

@@ -6,7 +6,7 @@
  * Description: Plugin crafted for dPlugins instalations and debuging
  * Author: DPlugins
  * Author URI: https://dplugins.com/
- * Version: 0.1.1
+ * Version: 1.0.0
  */
 
 require_once 'inc/AdminMenu.php';
@@ -29,26 +29,9 @@ class WindenAssistant
   }
 }
 
+// get prefixes from the winden or set defaults
 new TailwindScreensInjector();
 // Initialize the plugin
 new WindenAssistant();
-
-
-// // Fetch the option value
-// $winden_editor_option = get_option('winden_editor');
-
-// // Check if the option exists
-// if (false !== $winden_editor_option) {
-//   // Print the option value
-//   echo '<pre>';
-//   print_r($winden_editor_option);
-//   echo '</pre>';
-// } else {
-//   echo 'Option not found or has no value.';
-// }
-
-
-// =================================================================
-// =================================================================
 
 

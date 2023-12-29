@@ -2,6 +2,7 @@ node_modules/
 src/
 .git
 .gitignore
+build.js
 package-lock.json 
 package.json 
 postcss.config.js 
