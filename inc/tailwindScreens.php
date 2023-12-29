@@ -55,4 +55,4 @@ class TailwindScreensInjector
     }
 }
 
-new TailwindScreensInjector();
+
