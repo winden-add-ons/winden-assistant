@@ -17,3 +17,7 @@
 .fuzzyarea__suggestion{
     @apply hover:!bg-slate-100;
 }
+
+.fuzzyarea__suggestion--focused:hover{
+    @apply !text-slate-800 !bg-slate-200;
+}

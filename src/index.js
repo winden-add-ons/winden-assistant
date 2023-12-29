@@ -54,8 +54,9 @@ export default function () {
           <form id="twaClassesAdd">
             ${twaTitleCreator("Edit Classes")}
 
-            <textarea id="twaClassesEditor" rows="6" spellcheck="false" data-gramm="false" class="p-1 mt-1 border-slate-100 bg-slate-50 rounded-md w-full text-sm focus:ring focus:ring-slate-100 focus:outline-none focus:border-slate-300 resize-none"></textarea>
-
+            <div class="relative">
+                <textarea id="twaClassesEditor" rows="6" spellcheck="false" data-gramm="false" class="p-1 mt-1 border-slate-100 bg-slate-50 rounded-md w-full text-sm focus:ring focus:ring-slate-100 focus:outline-none focus:border-slate-300 resize-none"></textarea>
+            </div>
             <div class="flex">
                 <button class="bg-slate-900  text-white rounded-md px-5 py-3 text-sm font-medium mt-2 w-full focus:outline-none focus:ring focus:ring-indigo-200 hover:ring hover:ring-indigo-200 hover:bg-indigo-600">
                 <span class="select-none">Update</span>
