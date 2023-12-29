@@ -1,3 +1,5 @@
+let = tailwindScreens;
+
 document.addEventListener("DOMContentLoaded", (event) => {
     let tailwindScreens = [
         {
@@ -49,3 +51,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     window.prefixes = prefixes;
     console.log(prefixes);
 });
+
+
+console.log("marko");
