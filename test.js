@@ -1,4 +1,18 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+    let tailwindScreens = [
+        {
+            name: "mob",
+            size: "640px",
+        },
+        {
+            name: "tab",
+            size: "768px",
+        },
+        {
+            name: "desk",
+            size: "1024px",
+        },
+    ];
 
     var additionalPrefixes = [
         "*:",
