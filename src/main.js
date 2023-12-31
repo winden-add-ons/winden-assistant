@@ -62,5 +62,5 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     var prefixes = prefixesFromScreens.concat(additionalPrefixes);
     window.prefixes = prefixes;
-    console.log(prefixes);
+    // console.log(prefixes);
 });

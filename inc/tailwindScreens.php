@@ -58,7 +58,7 @@ class TailwindScreensInjector
             $screensJson = json_encode($this->tailwindScreens);
             echo "<script type='text/javascript'>
                     var tailwindScreens = $screensJson;
-                    console.log(tailwindScreens);
+                    // console.log(tailwindScreens);
                   </script>";
         };
 
