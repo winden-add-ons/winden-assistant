@@ -38,7 +38,7 @@ export default function () {
 
             popupWrapper.classList.add("fixed", "z-50");
 
-            let popupPosition = ["right-4", "bottom-4"];
+            let popupPosition = ["right-2", "bottom-2"];
 
             popupPosition.forEach((className) =>
                 popupWrapper.classList.add(className)
