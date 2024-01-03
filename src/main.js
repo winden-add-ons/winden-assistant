@@ -4,6 +4,7 @@ import { injectCSSIntoIframe } from "./parts/iframeUtils.js";
 import { cssActiveEleementAnimation } from "./parts/cssActiveEleementAnimation.js";
 import { additionalPrefixes } from "./parts/prefixesConfig.js";
 
+
 document.addEventListener('DOMContentLoaded', () => {
     assistant();
     initializeFuzzyArea({
