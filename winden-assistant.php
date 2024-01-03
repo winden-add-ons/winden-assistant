@@ -10,28 +10,27 @@
  */
 
 require_once 'inc/AdminMenu.php';
-require_once 'inc/TailwindConfigLoader.php'; // Ensure this file is included
-require_once 'inc/tailwindScreens.php'; // Ensure this file is included
+require_once 'inc/WindenAutocomplete.php'; // Ensure this file is included
+require_once 'inc/TailwindScreens.php'; // Ensure this file is included
 
 class WindenAssistant
 {
   private $adminMenu;
-  private $tailwindConfigLoader;
+  private $WindenAutocompleteLoad;
 
   public function __construct()
   {
     $this->adminMenu = new AdminMenu();
-    $this->tailwindConfigLoader = new TailwindConfigLoader();
+    $this->WindenAutocompleteLoad = new WindenAutocompleteLoad();
 
-    add_action('wp_footer', array($this->tailwindConfigLoader, 'getTwConfigFromFile'));
-    add_action('admin_footer', array($this->tailwindConfigLoader, 'getTwConfigFromFile'));
+    add_action('wp_footer', array($this->WindenAutocompleteLoad, 'suggestions'));
+    add_action('admin_footer', array($this->WindenAutocompleteLoad, 'suggestions'));
     add_action('admin_menu', array($this->adminMenu, 'addAdminMenu'));
   }
 }
 
-// get prefixes from the winden or set defaults
-new TailwindScreensInjector();
-// Initialize the plugin
-new WindenAssistant();
+new TailwindScreensInjector();  // get prefixes from the winden or set defaults
+new WindenAutocompleteLoad();   // Initialize Autocomplete
+new WindenAssistant();          // Initialize the plugin
 
 

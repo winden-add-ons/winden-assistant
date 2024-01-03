@@ -395,12 +395,19 @@ export default function () {
             function submitClassesForm(eventItem) {
                 eventItem.preventDefault();
 
+                // Check if currentTarget is defined and not null
+                if (!currentTarget) {
+                    alert("Select some element first");
+                    return;
+                }
+
                 currentTarget.className = deNormalizeTextareaClasses(
                     twaClassesEditor.value
                 );
 
                 twaBreakpointClasses = getBreakpointClasses(currentTarget);
             }
+
 
             window.addEventListener("resize", () => {
                 twaBreakpoint.innerText = getActiveBreakpoint();
